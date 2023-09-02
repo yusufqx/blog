@@ -202,7 +202,7 @@ def reset():
     form = ResetForm()
     if form.validate_on_submit():
         email_sender = "cancoderx@gmail.com"
-        email_password = "wmwvlwfbaizzidfy"
+        email_password = "onusoyleyemiyoruzmaalesef"
         email_receiver = form.email.data
 
         s = URLSafeTimedSerializer("your_secret_key")
