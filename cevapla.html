@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block body %}
+{% if session["logged_in"] %}
+<h3>Yorum Ekle</h3>
+<hr>
+<form method="post" action="{{ url_for('yorum_ekle', article_title=article_title) }}">
+    <textarea class="form-control" rows="5" name="icerik">{% if form.icerik.data %}
+        {{ form.icerik.data|safe }}
+        {% endif %}</textarea>
+
+    <button type="submit" class="btn btn-primary">Yorumu Ekle</button>
+</form>
+
+{% endif %}
+{% endblock %}

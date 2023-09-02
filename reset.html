@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<h1>Şifre Sıfırlama</h1>
+    <form method="POST">
+      {{ form.hidden_tag() }}
+      <p>
+        Lütfen e-posta adresinizi girin:
+        {{ form.email(class="form-control") }}
+      </p>
+      <p>{{ form.submit(class="btn btn-primary") }}</p>
+    </form>
+{% endblock %}

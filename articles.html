@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% block body %}
+<h3>Makaleler</h3>
+<hr>
+
+{% if articles %}
+
+<form class="form-inline" action="/search" method="post">
+    <input class="input-sm" type="search" placeholder="Ara..." aria-label="Search" name="keyword">
+    <style>
+        button {
+            margin-left: 10px;
+        }
+    </style>
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Arama Yap</button>
+</form>
+<hr>
+<br>
+
+<div class="list-group">
+    {% for article in articles %}
+
+    <a class="list-group-item list-group-item-action" aria-current="true">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{article.title}}</h5>
+        </div>
+        <p class="mb-1">{{article.content|safe}}</p>
+    </a>
+    {% if session["logged_in"] %}
+    <a href="{{ url_for('yorum_ekle', article_title=article.title, form=form) }}" class="btn btn-success">
+        Yorum Ekle
+    </a>
+    {% endif %}
+
+<!--     <a href="{{ url_for('yorumlariniz', article_baslik=article_title, article_id=article_id) }}" class="btn btn-primary mt-3">
+        Yorumlara Bak
+    </a> -->
+    <a href="{{ url_for('yorumlara_bak', article_title=article.title, article_id=article.id) }}" class="btn btn-primary">
+        Yorumlara Bak
+    </a>
+    
+    
+    <hr class="mt-5">
+
+    {% endfor %}
+</div>
+
+
+{% else %}
+<div class="alert alert-danger">Bu Blokta Henüz Makale Bulunmuyor</div>
+
+{% endif %}
+{% endblock %}

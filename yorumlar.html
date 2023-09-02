@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+
+
+<div class="container d-flex justify-content-center align-items-center mt-3">
+    <div class="card bg-dark text-light" style="width: 100%; height: 15rem;">
+        <div class="card-body">
+            <h5 class="card-title">Yorum Yaptığın Makale</h5>
+            <hr style="height: 10px; background-color: white;">
+            <h5 class="card-title">{{makale.title}}</h5>
+            <p class="card-text">{{makale.content}}</p>
+        </div>
+    </div>
+</div>
+
+<h3>Makaleye Yapılan Yorumlar</h3>
+<hr>
+<ul>
+    {% for yorum in yorumlar %}
+    <ul class="list-group">
+        <li class="list-group-item">{{ yorum.yorum }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ url_for('dashboard') }}">Geri Dön</a>
+
+    {% endblock %}

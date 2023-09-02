@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block body %}
+
+{% if yorum %}
+
+<hr>
+Tarih : {{yorum.created_date}}
+
+<hr>
+
+<h4>{{yorum.yorum|safe}}</h4>
+
+{% else %}
+<div class="alert alert-danger">
+    Böyle Bir Makale Bulunmuyor
+</div>
+{% endif %}
+{% endblock %}

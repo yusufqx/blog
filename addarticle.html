@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h3>Makale Oluştur</h3>
+<hr>
+<form method="post">
+    <div class="form-group">
+        <label for="title">Başlık:</label>
+        <input type="text" class="form-control" id="title" name="title" value="{{ form.title.data or '' }}">
+    </div>
+
+    <div class="form-group">
+        <label for="content">İçerik:</label>
+        <textarea class="form-control" id="content" name="content" rows="5">{% if form.content.data %}
+            {{ form.content.data|safe }}
+            {% endif %}
+        </textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        Makale Ekle
+    </button>
+</form>
+{% endblock %}
+
+<!-- CKEditor Script -->
+<script src="https://cdn.ckeditor.com/ckeditor5/36.0.0/classic/ckeditor.js"></script>
+<script>
+    // CKEditor'i başlat
+    ClassicEditor
+        .create(document.querySelector('#content'))
+        .catch(error => {
+            console.error(error);
+        });
+    CKEDITOR.config.allowedContent = true;
+    CKEDITOR.config.basicEntities = false;
+    CKEDITOR.config.entities = false;
+</script>
